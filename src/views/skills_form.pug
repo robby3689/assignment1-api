@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1.h3.mb-3= skill._id ? 'Edit Skill' : 'New Skill'
+  form(method='post', action= skill._id ? `/admin/skills/${skill._id}` : '/admin/skills')
+    .mb-3
+      label.form-label(for='name') Name
+      input.form-control(type='text', id='name', name='name', required, value=skill.name)
+    .mb-3
+      label.form-label(for='level') Level
+      select.form-select(id='level', name='level')
+        - const levels = ['Beginner','Intermediate','Advanced','Expert']
+        each lvl in levels
+          option(selected=skill.level===lvl)= lvl
+    .mb-3
+      label.form-label(for='category') Category
+      input.form-control(type='text', id='category', name='category', value=skill.category)
+    .d-flex.gap-2
+      button.btn.btn-brand(type='submit') Save
+      a.btn.btn-secondary(href='/admin/skills') Cancel

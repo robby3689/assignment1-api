@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  .d-flex.align-items-center.justify-content-between.mb-3
+    h1.h3.mb-0 Skills
+    a.btn.btn-success(href='/admin/skills/new') + New Skill
+  if skills.length
+    .table-responsive
+      table.table.table-striped.align-middle
+        thead
+          tr
+            th Name
+            th Level
+            th Category
+            th Actions
+        tbody
+          each s in skills
+            tr
+              td
+                strong= s.name
+              td= s.level
+              td= s.category
+              td
+                a.btn.btn-sm.btn-outline-primary.me-2(href=`/admin/skills/${s._id}/edit`) Edit
+                form(action=`/admin/skills/${s._id}/delete`, method='post', style='display:inline')
+                  button.btn.btn-sm.btn-outline-danger(type='submit') Delete
+  else
+    p.text-muted No skills yet.

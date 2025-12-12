@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1.h3.mb-3 Admin Dashboard
+  p.text-muted Use the nav to manage content.
+  .row.g-3
+    .col-md-6
+      .card.shadow-sm
+        .card-body
+          h2.h5.mb-2 Projects
+          p Manage portfolio projects (title, description, tech, url, featured).
+          a.btn.btn-brand(href='/admin/projects') Go to Projects →
+    .col-md-6
+      .card.shadow-sm
+        .card-body
+          h2.h5.mb-2 Skills
+          p Manage skills (name, level, category).
+          a.btn.btn-brand(href='/admin/skills') Go to Skills →

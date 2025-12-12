@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1.h3.mb-3= project._id ? 'Edit Project' : 'New Project'
+  form(method='post', action= project._id ? `/admin/projects/${project._id}` : '/admin/projects')
+    .mb-3
+      label.form-label(for='title') Title
+      input.form-control(type='text', id='title', name='title', required, value=project.title)
+    .mb-3
+      label.form-label(for='description') Description
+      textarea.form-control(id='description', name='description', rows='3')= project.description
+    .mb-3
+      label.form-label(for='url') URL
+      input.form-control(type='url', id='url', name='url', value=project.url)
+    .mb-3
+      label.form-label(for='tech') Tech (comma-separated)
+      input.form-control(type='text', id='tech', name='tech', value=(project.tech || []).join(', '))
+    .form-check.mb-3
+      input.form-check-input(type='checkbox', id='featured', name='featured', checked=project.featured)
+      label.form-check-label(for='featured') Featured
+    .d-flex.gap-2
+      button.btn.btn-brand(type='submit') Save
+      a.btn.btn-secondary(href='/admin/projects') Cancel

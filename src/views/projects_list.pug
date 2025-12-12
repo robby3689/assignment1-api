@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  .d-flex.align-items-center.justify-content-between.mb-3
+    h1.h3.mb-0 Projects
+    a.btn.btn-success(href='/admin/projects/new') + New Project
+  if projects.length
+    .table-responsive
+      table.table.table-striped.align-middle
+        thead
+          tr
+            th Title
+            th Tech
+            th Featured
+            th Actions
+        tbody
+          each p in projects
+            tr
+              td
+                strong= p.title
+                if p.url
+                  div
+                    a(href=p.url, target='_blank')= p.url
+                if p.description
+                  div.small.text-muted= p.description
+              td= (p.tech || []).join(', ')
+              td= p.featured ? 'Yes' : 'No'
+              td
+                a.btn.btn-sm.btn-outline-primary.me-2(href=`/admin/projects/${p._id}/edit`) Edit
+                form(action=`/admin/projects/${p._id}/delete`, method='post', style='display:inline')
+                  button.btn.btn-sm.btn-outline-danger(type='submit') Delete
+  else
+    p.text-muted No projects yet.
