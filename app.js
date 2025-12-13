@@ -20,8 +20,9 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 
-// DB connect
-const uri = process.env.MONGODB_URI;
+const uri = process.env.MONGODB_URI || process.env.MONGO_URI;
+
+
 if (!uri) {
 console.error('\
 [ERROR] MONGODB_URI missing in .env');
