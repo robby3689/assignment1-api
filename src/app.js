@@ -7,6 +7,9 @@ import dotenv from 'dotenv';
 import indexRouter from './routes/index.js';
 import adminRouter from './routes/admin.js';
 import apiRouter from './routes/api.js';
+import cors from "cors";
+app.use(cors());
+
 
 
 dotenv.config();
@@ -50,6 +53,11 @@ app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/admin', adminRouter);
 app.use('/api', apiRouter);
+app.use(cors({
+  origin: "*",   // allow all for now
+  methods: ["GET", "POST", "PUT", "DELETE"]
+}));
+
 
 
 app.use((req, res) => {
